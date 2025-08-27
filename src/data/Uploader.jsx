@@ -31,13 +31,15 @@ async function deleteBookings() {
 }
 
 async function createGuests() {
-  const { error } = await supabase.from("guests").insert(guests);
+  const { data, error } = await supabase.from("guests").insert(guests);
   if (error) console.log(error.message);
+  return data;
 }
 
 async function createCabins() {
-  const { error } = await supabase.from("cabins").insert(cabins);
+  const { data, error } = await supabase.from("cabins").insert(cabins);
   if (error) console.log(error.message);
+  return data;
 }
 
 async function createBookings() {
@@ -111,9 +113,11 @@ function Uploader() {
     await deleteCabins();
 
     // Bookings need to be created LAST
-    await createGuests();
-    await createCabins();
+    const insertedGuests = await createGuests();
+    const insertedCabins = await createCabins();
+
     await createBookings();
+    console.log("bookings", bookings);
 
     setIsLoading(false);
   }
