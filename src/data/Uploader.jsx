@@ -117,7 +117,6 @@ function Uploader() {
     const insertedCabins = await createCabins();
 
     await createBookings();
-    console.log("bookings", bookings);
 
     setIsLoading(false);
   }
