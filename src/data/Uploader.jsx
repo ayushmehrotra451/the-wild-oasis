@@ -130,6 +130,7 @@ function Uploader() {
 
   return (
     <div
+      className={`dev-uploader hidden-uploader`}
       style={{
         marginTop: "auto",
         backgroundColor: "#e0e7ff",
